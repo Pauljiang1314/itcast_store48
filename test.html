@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 解构赋值：快速的获取数组，或者对象中的某些数值
+
+        // var arr = ['a11', 'b22', 'd33', 'e44']; 
+
+        // var [a ,b, ...c] =arr;
+        // console.log(a, b, c);
+
+        // console.log(arr);
+
+        //对象的解构
+        var response = {
+            data: {
+                token: '123'
+            },
+            meta: {
+                msg: 'ok',
+                status:200
+            },
+            status: 300,
+            header: {}
+        };
+
+        // var {data: resData, status, meta} = response;
+
+        // console.log(resData, status, meta);
+        
+        //从response对象中拿到所有的值
+       
+        // console.log(token, msg, status);
+
+        // var { data:{ 
+        //             data:{ token },
+        //             meta:{ status, msg } 
+        //         } 
+        //     } = response;
+        
+        var { data: { data: { token }, meta: { msg, status } } } = response;
+        console.log(token, msg, status);
+
+    </script>
+</body>
+</html>
