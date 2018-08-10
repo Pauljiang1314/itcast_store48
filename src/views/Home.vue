@@ -1,3 +1,5 @@
+// 后台首页功能
+
 <template>
   <el-container class="container">
     <!-- 头部 -->
@@ -96,30 +98,36 @@
         </el-menu>
       </el-aside>
       <el-main class="main">
-          <router-view></router-view>
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-    export default {
-        beforeCreate() {
-            var token = sessionStorage.getItem('token');
-            if(!token) {
-                this.$message.warning('请先登录');
-                this.$router.push('/login');
-            }
-        },
-        methods: {
-            handleLogout(){
-                //提示退出登录
-                this.$message.success('推出成功');
-                sessionStorage.clear();
-                this.$router.push('/login');
-            }
-        }
+export default {
+  beforeCreate() {
+    // 判断是否登录，token,token都存在sessionstorage中
+    var token = sessionStorage.getItem('token');
+    if (!token) {
+      // 提示
+      this.$message.warning('请先登录');
+      // 没有token，跳转到登录页面
+      this.$router.push('/login');
     }
+  },
+  methods: {
+    // 退出
+    handleLogout() {
+      // 提示退出成功
+      this.$message.success('退出成功');
+      // 1 清除token
+      sessionStorage.clear();
+      // 2 跳转到登录页面
+      this.$router.push('/login');
+    }
+  }
+};
 </script>
 
 <style>
@@ -148,5 +156,5 @@
 }
 .main {
   background-color: #e9eef3;
-}  
+}
 </style>
